@@ -1,0 +1,41 @@
+; Mi primer intento, a ver si funciona
+; La liga al simulador es
+; https://schweigi.github.io/assembler-simulator/.
+; La liga al pequeño simulador es: https://peterhigginson.co.uk/LMC/
+
+JMP Inicio
+uno: DB 1
+dos: DB 2
+
+Inicio:
+   MOV C, [uno]
+   MOV D, [dos]
+   ADD C, D
+   HLT
+
+; Mi segundo intento, ahora quiero hacer algo un poco más interesante.
+; Vamos a escribir un programa que haga multiplicación sin usar la
+; instrucción que existe a propósito para eso.
+
+JMP Inicio
+
+uno: DB 5
+dos: DB 7
+
+Inicio:
+   MOV D, [uno] ; Se carga en el registro D el valor en uno
+   MOV C, [dos] ; Se carga en el registro C el valor en dos
+   CALL Multi ; Multiplica D y C, el resultado queda en A
+   MOV C, 0xE8 ; Quiero escribir la salida, pero escribe un caracter.
+   MOV [C], A 
+   HLT
+
+Multi:
+   MOV A, 0 ; Cargamos cero en el registro A.
+
+Ciclo:
+   ADD A, D ; Se suma el valor de A con el de D, la suma queda en A
+   DEC C ;  Se decrementa D
+   CMP C, 0 ; Cuando sea 0 se acaba el ciclo.
+   JNZ Ciclo ; Brinca a ciclo si no es cero.
+   RET ; Regresa a quién llamó.
