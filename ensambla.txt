@@ -2,6 +2,7 @@
 ; La liga al simulador es
 ; https://schweigi.github.io/assembler-simulator/.
 ; La liga al pequeño simulador es: https://peterhigginson.co.uk/LMC/
+; Un cambio para ver quÃ© pasa con git
 
 JMP Inicio
 uno: DB 1
